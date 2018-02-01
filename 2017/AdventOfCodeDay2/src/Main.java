@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.stream.*;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -29,6 +32,14 @@ public class Main {
                 + splitAndFindMaxMin(row15) + splitAndFindMaxMin(row16);
         System.out.println("sumTotal: " + sumTotal);
 
+        int sumTotalEvenlyDivisible = splitAndFindEvenlyDivisible(row1) + splitAndFindEvenlyDivisible(row2) + splitAndFindEvenlyDivisible(row3)
+                + splitAndFindEvenlyDivisible(row4) + splitAndFindEvenlyDivisible(row5) + splitAndFindEvenlyDivisible(row6)
+                + splitAndFindEvenlyDivisible(row7) + splitAndFindEvenlyDivisible(row8) + splitAndFindEvenlyDivisible(row9)
+                + splitAndFindEvenlyDivisible(row10) + splitAndFindEvenlyDivisible(row11) + splitAndFindEvenlyDivisible(row12)
+                + splitAndFindEvenlyDivisible(row13)  + splitAndFindEvenlyDivisible(row15) + splitAndFindEvenlyDivisible(row16)
+                + splitAndFindEvenlyDivisible(row14);
+        System.out.println("sumTotalEvenlyDivisible: " + sumTotalEvenlyDivisible);
+
     }
 
     public static int splitAndFindMaxMin(String row) {
@@ -47,6 +58,24 @@ public class Main {
         System.out.println("max: " + max + " min: " + min);
         System.out.println("max-min: " + difference);
         return difference;
+    }
+
+    public static int splitAndFindEvenlyDivisible(String row){
+        String [] array1= row.split("\t");
+        int first = -1;
+        int second = -1;
+        for(int i=0; i<array1.length; i++){
+            for(int j=1; j<array1.length; j++){
+                if(Integer.parseInt(array1[j])%Integer.parseInt(array1[i])==0 && i!=j){
+                    first = Integer.parseInt(array1[j]);
+                    System.out.println("first: " + first);
+                    second = Integer.parseInt(array1[i]);
+                    System.out.println("second: " + second);
+                }
+            }
+        }
+        System.out.println("first: " + first + " divided by second: " + second + " = " + first/second);
+        return first/second;
     }
 
 }
