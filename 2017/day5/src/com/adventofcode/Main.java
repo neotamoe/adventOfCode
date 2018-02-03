@@ -11,6 +11,49 @@ public class Main {
 
     public static void main(String[] args) {
 
+        jump(readJumpsText());
+
+        jumpTwo(readJumpsText());
+
+    }
+
+    public static int jump (List<Integer> jumpsList) {
+        int jumpLength = 0;
+        int index = 0;
+        int count = 0;
+        System.out.println("in jump method");
+        while(index<jumpsList.size()){
+            jumpLength = jumpsList.get(index);
+            jumpsList.set(index, jumpLength+1);
+            index += jumpLength;
+            count++;
+        }
+        System.out.println("count: " + count);
+        return count;
+    }
+
+    public static int jumpTwo (List<Integer> jumpsList) {
+        int jumpLength = 0;
+        int index2 = 0;
+        int count2 = 0;
+        System.out.println("in jumpTwo method");
+        while(index2<jumpsList.size()){
+            jumpLength = jumpsList.get(index2);
+            if(jumpLength>=3){
+                jumpsList.set(index2, jumpLength-1);
+                index2 += jumpLength;
+                count2++;
+            } else {
+                jumpsList.set(index2, jumpLength+1);
+                index2 += jumpLength;
+                count2++;
+            }
+        }
+        System.out.println("count2: " + count2);
+        return count2;
+    }
+
+    public static List<Integer> readJumpsText () {
         Scanner inFile1 = null;
         int i=0;
         int next = 0;
@@ -32,34 +75,12 @@ public class Main {
             temps.add(i, next);
             i++;
         }
-
-        jump(temps);
-
-    }
-
-    public static int jump (List<Integer> jumpsList) {
-        int jumpLength = 0;
-        int index = 0;
-        int count = 0;
-        System.out.println("in jump method");
-        while(index<jumpsList.size()){
-            System.out.println("index start of loop: " + index);
-            System.out.println("count start of loop: " + count);
-            System.out.println("jumpLength start of loop: " + jumpLength);
-            jumpLength = jumpsList.get(index);
-            jumpsList.set(index, jumpLength+1);
-            index += jumpLength;
-            count++;
-            System.out.println("index end of loop: " + index);
-            System.out.println("jumpLength end of loop: " + jumpLength);
-        }
-        System.out.println("count: " + count);
-        return count;
+        return temps;
     }
 
 }
 
-// ANSWER: 355965
+// PART 1: ANSWER: 355965
 //--- Day 5: A Maze of Twisty Trampolines, All Alike ---
 //        An urgent interrupt arrives from the CPU: it's trapped in a maze of jump instructions, and it would like assistance from any programs with spare cycles to help find the exit.
 //
@@ -85,3 +106,11 @@ public class Main {
 //        In this example, the exit is reached in 5 steps.
 //
 //        How many steps does it take to reach the exit?
+
+// ANSWER: 26,948,068
+//--- Part Two ---
+//        Now, the jumps are even stranger: after each jump, if the offset was three or more, instead decrease it by 1. Otherwise, increase it by 1 as before.
+//
+//        Using this rule with the above example, the process now takes 10 steps, and the offset values after finding the exit are left as 2 3 2 3 -1.
+//
+//        How many steps does it now take to reach the exit?
