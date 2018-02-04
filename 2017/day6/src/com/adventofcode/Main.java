@@ -6,26 +6,32 @@ public class Main {
 
     public static void main(String[] args) {
         List<Integer> banks = new ArrayList<Integer>();
-        banks.add(14);
+//        banks.add(14);
+//        banks.add(0);
+//        banks.add(15);
+//        banks.add(12);
+//        banks.add(11);
+//        banks.add(11);
+//        banks.add(3);
+//        banks.add(5);
+//        banks.add(1);
+//        banks.add(6);
+//        banks.add(8);
+//        banks.add(4);
+//        banks.add(9);
+//        banks.add(1);
+//        banks.add(8);
+//        banks.add(4);
         banks.add(0);
-        banks.add(15);
-        banks.add(12);
-        banks.add(11);
-        banks.add(11);
-        banks.add(3);
-        banks.add(5);
-        banks.add(1);
-        banks.add(6);
-        banks.add(8);
-        banks.add(4);
-        banks.add(9);
-        banks.add(1);
-        banks.add(8);
-        banks.add(4);
+        banks.add(2);
+        banks.add(7);
+        banks.add(0);
 
         int count = 0;
 
         Map<List<Integer>, Integer> states = new HashMap<List<Integer>,Integer>();
+        System.out.println("original banks : " + banks.toString());
+        System.out.println("original states : " + states.toString());
 
         trackStates(states,banks,count);
         while(!compareStates(states,banks)) {
@@ -33,8 +39,9 @@ public class Main {
             count++;
             trackStates(states, banks, count);
         }
-        System.out.println("final count: " + count);
+        System.out.println("final banks: " + banks.toString());
 
+        System.out.println("final count: " + count);
     }
 
 
@@ -53,6 +60,7 @@ public class Main {
             maxToDistribute -= 1;
             i++;
         }
+//        System.out.println("banks after redistribute: " + banks.toString());
         return banks;
     }
 
@@ -68,6 +76,8 @@ public class Main {
 
     public static Map<List<Integer>, Integer> trackStates(Map<List<Integer>, Integer> states, List<Integer> banks, int count) {
         states.put(banks, count);
+        System.out.println("states after put: " + states.toString());
+
         return states;
     }
 
@@ -103,3 +113,7 @@ public class Main {
 //        At this point, we've reached a state we've seen before: 2 4 1 2 was already seen. The infinite loop is detected after the fifth block redistribution cycle, and so the answer in this example is 5.
 //
 //        Given the initial block counts in your puzzle input, how many redistribution cycles must be completed before a configuration is produced that has been seen before?
+
+
+// part 2 :
+// first guess: 11136(too high)
