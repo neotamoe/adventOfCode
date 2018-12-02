@@ -10,6 +10,8 @@ let frequencies = [0];
 
 let duplicateFrequency = false;
 
+let firstDuplicate = 0;
+
 function goThrough(steps){
     steps.forEach(element => {
         if(element.substring(0,1)=='+'){
@@ -19,10 +21,10 @@ function goThrough(steps){
             total -= parseInt(element.substring(1));
             // console.log('- ' + element.substring(1) + ' = ' + total);
         }
-        if(frequencies.includes(total)){
+        if(frequencies.includes(total) && !duplicateFrequency){
             console.log('duplicate', total);
             duplicateFrequency = true;
-            return total;
+            firstDuplicate = total;
         }
         frequencies.push(total);
     });
@@ -32,6 +34,6 @@ while(!duplicateFrequency){
     goThrough(steps);
 }
 
-console.log('final total', total);
+console.log('final answer: ' + firstDuplicate);
 
-// this doesn't exit the loop when the first duplicate is found, but does (through the logs) give the correct answer
+// this doesn't exit the loop when the first duplicate is found due to using forEach, but does give the correct answer through the final log statement
