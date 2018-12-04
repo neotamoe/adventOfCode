@@ -21,48 +21,54 @@
 
 let claims = [[1,3,4,5],[3,1,4,2],[5,5,2,2]];
 
-function createArray(length) {
-    var arr = new Array(length || 0),
-        i = length;
+var fabric = new Array(10);
 
-    if (arguments.length > 1) {
-        var args = Array.prototype.slice.call(arguments, 1);
-        while(i--) arr[length-1 - i] = createArray.apply(this, args);
-    }
-
-    return arr;
+for (var i = 0; i < fabric.length; i++) {
+  fabric[i] = new Array(10);
 }
-// https://stackoverflow.com/questions/966225/how-can-i-create-a-two-dimensional-array-in-javascript/966938#966938
 
-let fabric = createArray(10,10);
+console.log(fabric);
+
+// function createArray(length) {
+//     var arr = new Array(length || 0),
+//         i = length;
+
+//     if (arguments.length > 1) {
+//         var args = Array.prototype.slice.call(arguments, 1);
+//         while(i--) arr[length-1 - i] = createArray.apply(this, args);
+//     }
+
+//     return arr;
+// }
+// // https://stackoverflow.com/questions/966225/how-can-i-create-a-two-dimensional-array-in-javascript/966938#966938
+
+// let fabric = createArray(10,10);
 for(let k=0; k<10; k++){
     for(let m=0; m<10; m++){
         fabric[k][m] = 0;
     }
 }
-console.log(fabric.toString())
+
+for(let a=0; a<10; a++){
+    console.log(fabric[a]);
+}
+
+console.log('setup okay' + '\n');
 
 for(let n=0; n<claims.length; n++) {
-    let fabricStartRow = fabric[claims[n][0],claims[n][1]]  
-    let fabricStartValue = fabric[claims[n][0],claims[n][1]][0]  
-    console.log('fabricStartRow**********: ', fabricStartRow);
-    let startX = claims[n][0];
-    console.log('startX', startX);
-    let maxX = claims[n][2] + 1;
-    console.log('maxX', maxX)
-    let yRows = claims[n][3]
-    console.log('yRows:', yRows);
+
     // for claims[3]- claims[1] times
     // start at x=claims[0], go to xMAX=claims[2]
-    
-    while(yRows>1){
-
-        for(let p=startX; p<maxX; p++){
-            fabric[claims[n][0],claims[n][1]][p]++;
+    let plusY = claims[n][3];
+    let plusX = claims[n][2];
+    while(plusY>0){
+        for(let b=claims[n][0]; b<plusX + 1; b++){
+            fabric[claims[n][1]][b]++
         }
-        console.log(fabricStartRow);
-        yRows--;
+        plusY--;
     }
 }
 
-console.log(fabric.toString())
+for(let c=0; c<10; c++){
+    console.log(fabric[c]);
+}
