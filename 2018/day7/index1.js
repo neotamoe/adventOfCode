@@ -46,12 +46,16 @@ let m = 0;
 // while(finalString.length<26){
 
     for (var key of map.keys()) {
-        console.log(key);
-        console.log(map.get(String.fromCharCode(65 + m)))
+        if(map.get(key)==""){
+            finalString += key;
+            // console.log(key + ' is empty');
+        }
+        // console.log(key);
+        // console.log(map.get(String.fromCharCode(65 + m)))
         m++;
     }
 // }
 
-
+console.log(finalString);
 
 
