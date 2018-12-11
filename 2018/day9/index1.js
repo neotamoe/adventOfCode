@@ -19,7 +19,7 @@ players.forEach(element => {
 });
 
 let i=10;
-let currentPlayer = 10;
+let currentPlayer = 1;
 let currentMarble
 let circle = [0, 8, 4, 9, 2, 5, 1, 6, 3, 7];
 let currentMarbleIndex
@@ -28,8 +28,8 @@ let marbleToRemoveIndex = currentMarbleIndex - 7;
 
 
 while(i<71523){
-// while(i<49){
-
+// while(i<27){
+// while(i<1619) {
     if((i-1)%23==0){
         // make the marble that is one-clockwise of removed the current
         currentMarble = circle[marbleToRemoveIndex];
@@ -46,10 +46,10 @@ while(i<71523){
         // add 7th counter-clockwise marble to score and remove
         marbleToRemoveIndex = currentMarbleIndex - 7;
         if(marbleToRemoveIndex<0){
-            marbleToRemoveIndex = circle.length - 1 - (Math.abs(marbleToRemoveIndex));
+            marbleToRemoveIndex = circle.length - (Math.abs(marbleToRemoveIndex));
         }
         scoreToAdd += parseInt(circle[marbleToRemoveIndex]);
-        // console.log('i: ', i + ' circle[marbleToRemoveIndex]: ', circle[marbleToRemoveIndex] + ' marbleToRemoveIndex: ', marbleToRemoveIndex)
+        console.log('i: ', i + ' circle[marbleToRemoveIndex]: ', circle[marbleToRemoveIndex] + ' marbleToRemoveIndex: ', marbleToRemoveIndex)
 
         // remove marble at marbleToRemoveIndex
         circle.splice(marbleToRemoveIndex, 1);
@@ -57,7 +57,7 @@ while(i<71523){
         // console.log('currentPlayer: ', currentPlayer);
         let currentPlayerScore = scores.get(currentPlayer);
         currentPlayerScore += parseInt(scoreToAdd);
-        // console.log('SCORE TO ADD: ', scoreToAdd);
+        console.log('SCORE TO ADD: ', scoreToAdd);
         // put new score in map
         scores.set(currentPlayer, currentPlayerScore);
 
@@ -73,12 +73,14 @@ while(i<71523){
         if (insertMarbleIndex == circle.length ){
             circle.push(i);
         } else if (insertMarbleIndex > circle.length) {
-            insertMarbleIndex = insertMarbleIndex - currentMarbleIndex -1 ;
+            insertMarbleIndex = circle.length - currentMarbleIndex;
             circle.splice(insertMarbleIndex, 0, i);
         } else {
             circle.splice(insertMarbleIndex, 0, i);
         }    
     }
+    // console.log('['+ currentPlayer + ']' + circle.toString());
+
 
     // advance to next player
     // 9 players
