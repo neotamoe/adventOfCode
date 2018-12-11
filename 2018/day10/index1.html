@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>  
+<script>
+import  { getDataPoints } from './index1.js';
+
+let dataPoints = new getDataPoints();
+
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	zoomEnabled: true,
+	title:{
+		text: "Advent of Code Day 10"
+	},
+	axisX: {
+		title:"x",
+		minimum: -7000,
+		maximum: 7000
+	},
+	axisY:{
+        title: "y",
+        minimum: -7000,
+		maximum: 7000
+
+	},
+	data: [{
+		type: "scatter",
+		toolTipContent: "<b>X: </b>{x}<br/><b>Y: </b>{y}",
+		dataPoints: [
+            dataPoints
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
