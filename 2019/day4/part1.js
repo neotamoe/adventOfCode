@@ -26,3 +26,4 @@ for(let i=start; i<end+1; i++){
 }
 
 console.log(`final count: ${count}`)
+// answer: 1790
