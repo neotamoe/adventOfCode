@@ -66,14 +66,27 @@ let input = fs.readFileSync('./input.txt','utf8');
 let inputs = input.split('\n')
 let highest = 0
 
+let allIDs = []
 inputs.map(seatCode => {
-  if(findSeat(seatCode) > highest) { 
-    highest = findSeat(seatCode)
-    console.log(`new HIGHEST! => highest is now ${highest} by seatCode ${seatCode}`)
+  const seatId = findSeat(seatCode)
+  if(seatId > highest) { 
+    highest = seatId
+    // console.log(`new HIGHEST! => highest is now ${highest} by seatCode ${seatCode}`)
   }
+  allIDs.push(seatId)
 })
 
 console.log(`highest: ${highest}`)
 
+let sorted = allIDs.sort((a, b) => a - b)
+sorted.map((id, idx) => {
+  if(id+1 != sorted[idx+1]){
+    console.log(`MY SEAT ID IS: ${id+1} between ${sorted[idx]} and ${sorted[idx+1]}`)
+  }
+})
+
+
 // 991 too high 
 // 989 - right
+
+//548
